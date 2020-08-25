@@ -27,6 +27,7 @@ class AreobikActivity : AppCompatActivity() {
     lateinit var option: Spinner
     lateinit var tv_workout: TextView
     lateinit var linearLayout: LinearLayout
+    var time = 20000;
 
     private lateinit var viewModel: WorkoutViewModel
 
@@ -88,7 +89,7 @@ class AreobikActivity : AppCompatActivity() {
         }
 
         chronometer.setOnChronometerTickListener {
-            if (SystemClock.elapsedRealtime() - chronometer.base >= 20000) {
+            if (SystemClock.elapsedRealtime() - chronometer.base >= time * 1000) {
                 chronometer.base = SystemClock.elapsedRealtime()
                 bg_song = MediaPlayer.create(this@AreobikActivity, R.raw.bing)
                 bg_song!!.start()
@@ -96,6 +97,11 @@ class AreobikActivity : AppCompatActivity() {
 
 
             }
+        }
+
+        btn_time.setOnClickListener {
+            time = et_time.text.toString().toInt()
+            tv_time.text = time.toString()
         }
 
         chronometer_start.setOnClickListener {
