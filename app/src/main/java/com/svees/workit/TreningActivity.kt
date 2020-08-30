@@ -18,11 +18,13 @@ import kotlinx.android.synthetic.main.activity_trening.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
+
 class TreningActivity : AppCompatActivity() {
 
     var timeWhenStopped = 0L
     var workoutTime: String = ""
     var rep = 0;
+
 
     lateinit var tv_activity: TextView
 
@@ -83,7 +85,11 @@ class TreningActivity : AppCompatActivity() {
             btn_cancel.setOnClickListener { dialog.cancel() }
             dialog.show()
         }
-
+        btn_reset.setOnClickListener {
+            val intent = intent
+            finish()
+            startActivity(intent)
+        }
 
     }
 
@@ -97,13 +103,14 @@ class TreningActivity : AppCompatActivity() {
         btn_add_rep.visibility = View.INVISIBLE
 
         // val imageView = ImageView(this)
-        val textView = TextView(this)
+
 
         val params = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.MATCH_PARENT,
             LinearLayout.LayoutParams.WRAP_CONTENT
         )
 
+        val textView = TextView(this)
 
         // imageView.layoutParams = params
         textView.layoutParams = params

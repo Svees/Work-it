@@ -1,10 +1,12 @@
 package com.svees.workit
 
+import android.content.Context
 import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
 import android.os.SystemClock
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
@@ -102,6 +104,7 @@ class AreobikActivity : AppCompatActivity() {
         btn_time.setOnClickListener {
             time = et_time.text.toString().toInt()
             tv_time.text = time.toString()
+            it.hideKeyboard()
         }
 
         chronometer_start.setOnClickListener {
@@ -190,5 +193,10 @@ class AreobikActivity : AppCompatActivity() {
                 or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                 or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                 or View.SYSTEM_UI_FLAG_FULLSCREEN)
+    }
+
+    fun View.hideKeyboard() {
+        val inputManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputManager.hideSoftInputFromWindow(windowToken, 0)
     }
 }
